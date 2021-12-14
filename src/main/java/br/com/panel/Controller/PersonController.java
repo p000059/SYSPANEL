@@ -32,19 +32,21 @@ public class PersonController {
     }
     
     @PostMapping(path = "/CreatePerson")
-    public @ResponseBody String addNewPerson (@RequestParam String namePerson){
+    public @ResponseBody String addNewPerson (@RequestParam String namePerson, @RequestParam String statusPerson){
         
         Person person = new Person();
         person.setNamePerson(namePerson);
+        person.setStatusPerson(statusPerson);
         iRepository.save(person);
         return "Saved";
     }
     
     @PutMapping(path = "/UpdatePerson/{idPerson}")
-    public @ResponseBody String updatePerson(@PathVariable int idPerson, @RequestParam String namePerson){
+    public @ResponseBody String updatePerson(@PathVariable int idPerson, @RequestParam String namePerson, @RequestParam String statusPerson){
         
         Person person = iRepository.findById(idPerson);
         person.setNamePerson(namePerson);
+        person.setStatusPerson(statusPerson);
         iRepository.save(person);
         return "Updated";
     }
