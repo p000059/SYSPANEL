@@ -1,0 +1,5 @@
+br/com/panel/Models/Class/ValidatorClass/ValidatorName.class
+br/com/panel/Models/Interface/IValidator.class
+br/com/panel/Models/Class/ValidatorClass/ValidatorException.class
+br/com/panel/Models/Class/Person.class
+br/com/panel/PainelApplication.class
