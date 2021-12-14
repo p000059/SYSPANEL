@@ -1,5 +1,8 @@
-br/com/panel/Models/Class/ValidatorClass/ValidatorName.class
+br/com/panel/DAO/DAOPerson.class
+br/com/panel/Controller/PersonController.class
+br/com/panel/Models/Interface/IRepository.class
 br/com/panel/Models/Interface/IValidator.class
-br/com/panel/Models/Class/ValidatorClass/ValidatorException.class
+br/com/panel/Models/ValidatorClass/ValidatorName.class
+br/com/panel/Models/ValidatorClass/ValidatorException.class
+br/com/panel/PanelApplication.class
 br/com/panel/Models/Class/Person.class
-br/com/panel/PainelApplication.class
