@@ -193,4 +193,8 @@ public class Person {
 //    public void setExpectedOutput(String expectedOutput) {
 //        this.expectedOutput = expectedOutput;
 //    }
+    
+    public void readPerson(){
+        return;
+    }
 }
