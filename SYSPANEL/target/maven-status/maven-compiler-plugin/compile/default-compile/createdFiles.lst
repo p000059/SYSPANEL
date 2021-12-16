@@ -1,6 +1,0 @@
-br/com/syspanel/Controller/Person/PersonController.class
-br/com/syspanel/Model/Interface/IRepository.class
-br/com/syspanel/Model/Class/Person.class
-br/com/syspanel/Model/Interface/IValidator.class
-br/com/syspanel/SyspanelApplication.class
-br/com/syspanel/Model/Validation/ValidatorName.class
