@@ -14,6 +14,7 @@ public class DAOPersistence {
     
     private String namePerson;
     private String status;
+    private String local;
 
     private IValidator iValidator = new ValidatorException();
     
@@ -21,14 +22,15 @@ public class DAOPersistence {
     
     public DAOPersistence(){}
     
-    public DAOPersistence(String namePerson, String status){
+    public DAOPersistence(String namePerson, String status, String local){
         this.namePerson = namePerson;
         this.status = status;
+        this.local = local;
         
     }
     
     @ResponseBody
-    public Person validateObj(String namePerson, String status){
+    public Person validateObj(String namePerson, String status, String local){
         
         if(iValidator.validate(namePerson)){
             objPerson.setNamePerson(namePerson);
@@ -38,6 +40,12 @@ public class DAOPersistence {
         }
         if(iValidator.validate(status)){
             objPerson.setStatus(status);
+        }
+        else{
+            throw new IllegalArgumentException(iValidator.validateError());
+        }
+        if(iValidator.validate(local)){
+            objPerson.setStatus(local);
         }
         else{
             throw new IllegalArgumentException(iValidator.validateError());

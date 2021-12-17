@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <meta charset="UTF-8">
+        <title>Manager</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+<body>
+    <script>
+        
+        let lstPerson = [];
+        
+        function save(){
+            
+            const xhttp = new XMLHttpRequest();
+            
+            let id = document.getElementById('id').value;
+            let namePerson = document.getElementById('namePerson').value;
+            let status = document.getElementById('status').value;
+            let local = document.getElementById('local').value;
+            let urlPost = `?namePerson=${namePerson}&status=${status}&local=${local}`;
+            let urlPut = `/panel/${id}?namePerson=${namePerson}&status=${status}&local=${local}`;
+            
+            if(id > 0){
+                xhttp.open("PUT", urlPut);
+            }
+            else{
+                xhttp.open("POST", `/panel/${urlPost}`);
+            }
+            
+            xhttp.send();
+
+            xhttp.onload = function() {
+                
+                alert(this.responseText);
+                loadAllPerson();
+            }
+            clearP();
+        }
+        
+        function loadAllPerson(){
+            
+            const xhttp = new XMLHttpRequest();
+            
+            xhttp.open("GET", `/panel/`);
+            xhttp.send();
+
+            xhttp.onload = function() {
+                
+            lstPerson = JSON.parse(this.responseText);
+            let out = "";
+            let person = "";
+                
+                for(let i in lstPerson){
+
+                    person = lstPerson[i];
+                    out += `<tr onclick='activate(${i})'><td>${person.idPerson}</td><td>${person.namePerson}</td><td>${person.status}</td><td>${person.local}</td></tr>`
+                }
+                
+                document.getElementById('tbody').innerHTML = out;
+            }
+        }
+        
+        function deleteP(){
+            
+            const xhttp = new XMLHttpRequest();
+            
+            let id = document.getElementById('id').value;
+            
+            xhttp.open("DELETE", `/panel/${id}`);
+            
+            
+            xhttp.send();
+
+            xhttp.onload = function() {
+                
+                alert(this.responseText);
+                loadAllPerson();
+            }
+            clearP();
+        }
+        
+        function activate(id){
+            
+            let person = lstPerson[id];
+            
+            document.getElementById('id').value = person.idPerson;
+            document.getElementById('namePerson').value = person.namePerson;
+            document.getElementById('status').value = person.status;
+            document.getElementById('local').value = person.local;
+
+        }
+        
+        function clearP(){
+            
+            document.getElementById('namePerson').innerHTML = "";
+            document.getElementById('status').innerHTML = "";
+            document.getElementById('local').innerHTML = "";
+        }
+        
+    </script>
+    <div>Panel Manager</div>
+    <form th:action="@{/logout}" method="get">
+        <button class="btn btn-primary" type="submit" value="Sign Out">Logout</button>
+    </form>
+
+    <div class="container mt-3">
+        <form>
+            <div class="mb-3 mt-3">
+                <input type="hidden" id="id" name="id">
+                <label for="text" class="form-label">Digite o Nome</label>
+                <input type="text" class="form-control" id="namePerson" placeholder="Entre com o nome" name="namePerson">
+            </div>
+            <div class="mb-3">
+                <label for="text" class="form-label">Digite o Status</label>
+                <input type="text" class="form-control" id="status" placeholder="Entre com o status" name="status">
+            </div>
+            <div class="mb-3">
+                <label for="text" class="form-label">Digite o Local</label>
+                <input type="text" class="form-control" id="local" placeholder="Entre com o status" name="local">
+            </div>
+            <button type="button" class="btn btn-primary" onclick="save()">Salvar</button>
+            <button type="button" class="btn btn-primary" onclick="clearP()">Limpar</button>
+            <button type="button" class="btn btn-primary" onclick="deleteP()">Apagar</button>
+        </form>
+        
+        <table class="table table-striped table-bordered table-hover">
+        <thead class="table-success">
+          <tr>
+            <th>id</th>
+            <th>Nome</th>
+            <th>Status</th>
+            <th>Local</th>
+          </tr>
+        </thead>
+        <tbody id="tbody">
+            
+        </tbody>
+      </table>
+        
+        <script>loadAllPerson()</script>
+    </div>
+</body>
+</html>

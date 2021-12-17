@@ -4,6 +4,8 @@ import com.panel.Model.Interface.IValidator;
 
 public class ValidatorException implements IValidator{
 
+    ValidatorException objValidatorException = new ValidatorException();
+    
     @Override
     public boolean validate(String string) {
         if(string.equals("")){

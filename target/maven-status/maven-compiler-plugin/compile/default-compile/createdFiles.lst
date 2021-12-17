@@ -1,0 +1,10 @@
+com/panel/Model/DAO/DAOPersistence.class
+com/panel/Model/DAO/DAOStatus.class
+com/panel/Controller/Person/PersonController.class
+com/panel/Model/Class/ValidatorException.class
+com/panel/Model/Interface/IValidator.class
+com/panel/Configs/MvcConfig.class
+com/panel/Model/Interface/IRepository.class
+com/panel/Configs/WebSecurityConfig.class
+com/panel/PanelApplication.class
+com/panel/Model/Class/Person.class

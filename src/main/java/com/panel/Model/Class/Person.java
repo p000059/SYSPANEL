@@ -169,18 +169,6 @@ public class Person {
 
     public void setLocal(String local) {
         
-        if(local.equals("")){
-            
-            throw new IllegalArgumentException("Erro no preenchimento de local.");
-        }
-         if(local.isEmpty()){
-            throw new IllegalArgumentException("Erro de Preenchimento de local.");
-        }
-        
-        if(local.trim().isEmpty()){
-            throw new IllegalArgumentException("Erro de Preenchimento de local.");
-        }
-        
         this.local = local;
     }
 
@@ -189,18 +177,6 @@ public class Person {
     }
 
     public void setExpectedStart(String expectedStart) {
-        
-        if(expectedStart.equals("")){
-            
-            throw new IllegalArgumentException("Erro no preenchimento de início Previsto.");
-        }
-         if(expectedStart.isEmpty()){
-            throw new IllegalArgumentException("Erro de Preenchimento de início Previsto.");
-        }
-        
-        if(expectedStart.trim().isEmpty()){
-            throw new IllegalArgumentException("Erro de Preenchimento de início Previsto.");
-        }
         
         this.expectedStart = expectedStart;
     }

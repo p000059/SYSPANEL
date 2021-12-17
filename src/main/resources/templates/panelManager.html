@@ -18,13 +18,15 @@
             let id = document.getElementById('id').value;
             let namePerson = document.getElementById('namePerson').value;
             let status = document.getElementById('status').value;
-            let url = `?namePerson=${namePerson}&status=${status}`;
+            let local = document.getElementById('local').value;
+            let urlPost = `?namePerson=${namePerson}&status=${status}&local=${local}`;
+            let urlPut = `/panel/${id}?namePerson=${namePerson}&status=${status}&local=${local}`;
             
             if(id > 0){
-                xhttp.open("PUT", `/panel/${id}?namePerson=${namePerson}&status=${status}`);
+                xhttp.open("PUT", urlPut);
             }
             else{
-                xhttp.open("POST", `/panel/${url}`);
+                xhttp.open("POST", `/panel/${urlPost}`);
             }
             
             xhttp.send();
@@ -51,10 +53,9 @@
             let person = "";
                 
                 for(let i in lstPerson){
-                    
-//                    console.log(lstPerson[i]);
+
                     person = lstPerson[i];
-                    out += `<tr onclick='activate(${i})'><td>${person.idPerson}</td><td>${person.namePerson}</td><td>${person.status}</td></tr>`
+                    out += `<tr onclick='activate(${i})'><td>${person.idPerson}</td><td>${person.namePerson}</td><td>${person.status}</td><td>${person.local}</td></tr>`
                 }
                 
                 document.getElementById('tbody').innerHTML = out;
@@ -87,6 +88,7 @@
             document.getElementById('id').value = person.idPerson;
             document.getElementById('namePerson').value = person.namePerson;
             document.getElementById('status').value = person.status;
+            document.getElementById('local').value = person.local;
 
         }
         
@@ -94,6 +96,7 @@
             
             document.getElementById('namePerson').innerHTML = "";
             document.getElementById('status').innerHTML = "";
+            document.getElementById('local').innerHTML = "";
         }
         
     </script>
@@ -110,8 +113,12 @@
                 <input type="text" class="form-control" id="namePerson" placeholder="Entre com o nome" name="namePerson">
             </div>
             <div class="mb-3">
-                <label for="statusPerson" class="form-label">Digite o Status</label>
+                <label for="text" class="form-label">Digite o Status</label>
                 <input type="text" class="form-control" id="status" placeholder="Entre com o status" name="status">
+            </div>
+            <div class="mb-3">
+                <label for="text" class="form-label">Digite o Local</label>
+                <input type="text" class="form-control" id="local" placeholder="Entre com o status" name="local">
             </div>
             <button type="button" class="btn btn-primary" onclick="save()">Salvar</button>
             <button type="button" class="btn btn-primary" onclick="clearP()">Limpar</button>
@@ -124,6 +131,7 @@
             <th>id</th>
             <th>Nome</th>
             <th>Status</th>
+            <th>Local</th>
           </tr>
         </thead>
         <tbody id="tbody">
