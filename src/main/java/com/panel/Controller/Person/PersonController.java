@@ -32,12 +32,12 @@ public class PersonController {
     }
     
     @PostMapping(path = "/")
-    public @ResponseBody String createPerson(@RequestParam String namePerson, @RequestParam String status, @RequestParam String local){
+    public @ResponseBody String createPerson(@RequestParam String namePerson, @RequestParam String status, @RequestParam String local, @RequestParam String expectedStart, @RequestParam String startSurgery, @RequestParam String endSurgery, @RequestParam String expectedOutput){
         
         try {
             
             DAOPersistence objPerson = new DAOPersistence();            
-            iRepository.save(objPerson.validateObj(namePerson, status, local));
+            iRepository.save(objPerson.validateObj(namePerson, status, local, expectedStart, startSurgery, endSurgery, expectedOutput));
             return "Saved";
         } 
         catch (Exception e) {

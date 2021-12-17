@@ -19,14 +19,18 @@
             let namePerson = document.getElementById('namePerson').value;
             let status = document.getElementById('status').value;
             let local = document.getElementById('local').value;
-            let urlPost = `?namePerson=${namePerson}&status=${status}&local=${local}`;
-            let urlPut = `/panel/${id}?namePerson=${namePerson}&status=${status}&local=${local}`;
+            let expectedStart = document.getElementById('expectedStart').value;
+            let startSurgery = document.getElementById('startSurgery').value;
+            let endSurgery = document.getElementById('endSurgery').value;
+            let expectedOutput = document.getElementById('expectedOutput').value;
+            let urlPost = `/panel/?namePerson=${namePerson}&status=${status}&local=${local}&expectedStart=${expectedStart}&startSurgery=${startSurgery}&endSurgery=${endSurgery}&expectedOutput=${expectedOutput}`;
+            let urlPut = `/panel/${id}?namePerson=${namePerson}&status=${status}&local=${local}&expectedStart=${expectedStart}&startSurgery=${startSurgery}&endSurgery=${endSurgery}&expectedOutput=${expectedOutput}`;
             
             if(id > 0){
                 xhttp.open("PUT", urlPut);
             }
             else{
-                xhttp.open("POST", `/panel/${urlPost}`);
+                xhttp.open("POST", urlPost);
             }
             
             xhttp.send();
@@ -55,7 +59,7 @@
                 for(let i in lstPerson){
 
                     person = lstPerson[i];
-                    out += `<tr onclick='activate(${i})'><td>${person.idPerson}</td><td>${person.namePerson}</td><td>${person.status}</td><td>${person.local}</td></tr>`
+                    out += `<tr onclick='activate(${i})'><td>${person.idPerson}</td><td>${person.namePerson}</td><td>${person.status}</td><td>${person.local}</td><td>${person.expectedStart}</td><td>${person.startSurgery}</td><td>${person.endSurgery}</td><td>${person.expectedOutput}</td></tr>`
                 }
                 
                 document.getElementById('tbody').innerHTML = out;
@@ -89,6 +93,11 @@
             document.getElementById('namePerson').value = person.namePerson;
             document.getElementById('status').value = person.status;
             document.getElementById('local').value = person.local;
+            
+            console.log(person.idPerson)
+            console.log(person.namePerson)
+            console.log(person.status)
+            console.log(person.local)
 
         }
         
@@ -118,7 +127,23 @@
             </div>
             <div class="mb-3">
                 <label for="text" class="form-label">Digite o Local</label>
-                <input type="text" class="form-control" id="local" placeholder="Entre com o status" name="local">
+                <input type="text" class="form-control" id="local" placeholder="Entre com o local" name="local">
+            </div>
+            <div class="mb-3">
+                <label for="text" class="form-label">Início Previsto</label>
+                <input type="text" class="form-control" id="expectedStart" placeholder="Entrada" name="expectedStart">
+            </div>
+            <div class="mb-3">
+                <label for="text" class="form-label">Início da Cirurgia</label>
+                <input type="text" class="form-control" id="startSurgery" placeholder="Início" name="startSurgery">
+            </div>
+            <div class="mb-3">
+                <label for="text" class="form-label">Término da Cirurgia</label>
+                <input type="text" class="form-control" id="endSurgery" placeholder="Término" name="endSurgery">
+            </div>
+            <div class="mb-3">
+                <label for="text" class="form-label">Saída Prevista</label>
+                <input type="text" class="form-control" id="expectedOutput" placeholder="Saída" name="expectedOutput">
             </div>
             <button type="button" class="btn btn-primary" onclick="save()">Salvar</button>
             <button type="button" class="btn btn-primary" onclick="clearP()">Limpar</button>
@@ -132,6 +157,10 @@
             <th>Nome</th>
             <th>Status</th>
             <th>Local</th>
+            <th>Início Previsto</th>
+            <th>Início da Cirurgia</th>
+            <th>Término da Cirurgia</th>
+            <th>Saída Prevista</th>
           </tr>
         </thead>
         <tbody id="tbody">

@@ -30,7 +30,7 @@ public class DAOPersistence {
     }
     
     @ResponseBody
-    public Person validateObj(String namePerson, String status, String local){
+    public Person validateObj(String namePerson, String status, String local, String expectedStart, String startSurgery, String endSurgery, String expectedOutput){
         
         if(iValidator.validate(namePerson)){
             objPerson.setNamePerson(namePerson);
@@ -45,18 +45,39 @@ public class DAOPersistence {
             throw new IllegalArgumentException(iValidator.validateError());
         }
         if(iValidator.validate(local)){
-            objPerson.setStatus(local);
+            objPerson.setLocal(local);
         }
         else{
             throw new IllegalArgumentException(iValidator.validateError());
         }
+        if(iValidator.validate(expectedStart)){
+            
+            objPerson.setExpectedStart(expectedStart);
+        }
+        else{
+        }        
+        if(iValidator.validate(startSurgery)){
+            
+            objPerson.setStartSurgery(startSurgery);
+        }
+        else{
+            throw new IllegalArgumentException(iValidator.validateError());            
+        }
+        if(iValidator.validate(endSurgery)){
+            
+            objPerson.setEndSurgery(endSurgery);
+        }
+        else{
+            throw new IllegalArgumentException(iValidator.validateError());            
+        }
+        if(iValidator.validate(expectedOutput)){
+            
+            objPerson.setExpectedOutput(expectedOutput);
+        }
+        else{
+            throw new IllegalArgumentException(iValidator.validateError());            
+        }
         
         return objPerson;
-    }
-    
-    public void validateStatus(){
-    }
-    
-    public void generalValidate(){
     }
 }
