@@ -17,9 +17,17 @@ public class DAOPersistence {
     
     private Person objPerson = new Person();
     
-    public void validatePerson(String namePerson, String status, String local, String expectedStart, String startSurgery, String endSurgery, String expectedOutput){
+    public Person validatePerson(Person objPerson, String namePerson, String status, String local, String expectedStart, String startSurgery, String endSurgery, String expectedOutput){
         
-        
+            objPerson.setNamePerson(namePerson);
+            objPerson.setStatus(status);
+            objPerson.setLocal(local);
+            objPerson.setExpectedStart(expectedStart);
+            objPerson.setStartSurgery(startSurgery);
+            objPerson.setEndSurgery(endSurgery);
+            objPerson.setExpectedOutput(expectedOutput);
+            
+            return objPerson;
     }
     
     public Person validateObj(String namePerson, String status, String local, String expectedStart, String startSurgery, String endSurgery, String expectedOutput){

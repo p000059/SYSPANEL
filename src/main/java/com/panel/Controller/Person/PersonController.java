@@ -1,7 +1,6 @@
 package com.panel.Controller.Person;
 import com.panel.Model.Class.Person;
 import com.panel.Model.DAO.DAOPersistence;
-import com.panel.Model.DAO.DAOStatus;
 import com.panel.Model.Interface.IRepository;
 import java.util.Optional;
 import org.springframework.data.domain.Sort;
@@ -53,17 +52,8 @@ public class PersonController {
             
             DAOPersistence objDAOPersistence = new DAOPersistence();
             Person objPerson = iRepository.findById(idPerson);
-            
-
-            objPerson.setNamePerson(namePerson);
-            objPerson.setStatus(status);
-            objPerson.setLocal(local);
-            objPerson.setExpectedStart(expectedStart);
-            objPerson.setStartSurgery(startSurgery);
-            objPerson.setEndSurgery(endSurgery);
-            objPerson.setExpectedOutput(expectedOutput);
-
-            iRepository.save(objPerson);
+          
+            iRepository.save(objDAOPersistence.validatePerson(objPerson, namePerson, status, local, expectedStart, startSurgery, endSurgery, expectedOutput));
             return "Updated";            
         } 
         catch (Exception e) {

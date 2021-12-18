@@ -5,6 +5,7 @@
 /media/marcelo/Documentos1/GIT/SYSPANEL/src/main/java/com/panel/Configs/WebSecurityConfig.java
 /media/marcelo/Documentos1/GIT/SYSPANEL/src/main/java/com/panel/Model/Class/Person.java
 /media/marcelo/Documentos1/GIT/SYSPANEL/src/main/java/com/panel/Model/Interface/IValidator.java
+/media/marcelo/Documentos1/GIT/SYSPANEL/src/main/java/com/panel/Model/Class/Teacher.java
 /media/marcelo/Documentos1/GIT/SYSPANEL/src/main/java/com/panel/Controller/Person/PersonController.java
 /media/marcelo/Documentos1/GIT/SYSPANEL/src/main/java/com/panel/PanelApplication.java
 /media/marcelo/Documentos1/GIT/SYSPANEL/src/main/java/com/panel/Model/Interface/IRepository.java

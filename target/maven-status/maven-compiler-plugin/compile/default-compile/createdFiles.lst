@@ -4,6 +4,7 @@ com/panel/Controller/Person/PersonController.class
 com/panel/Model/Class/ValidatorException.class
 com/panel/Model/Interface/IValidator.class
 com/panel/Configs/MvcConfig.class
+com/panel/Model/Class/Teacher.class
 com/panel/Model/Interface/IRepository.class
 com/panel/Configs/WebSecurityConfig.class
 com/panel/PanelApplication.class
