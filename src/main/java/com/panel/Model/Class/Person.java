@@ -16,9 +16,6 @@ public class Person {
     
     private String namePerson;
     private String status;
-    
-    //@OneToMany(mappedBy = "person", orphanRemoval = true)
-    //private Status status;
     private String local;
     private String expectedStart;
     private String startSurgery;

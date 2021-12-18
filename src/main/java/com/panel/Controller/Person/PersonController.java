@@ -36,8 +36,8 @@ public class PersonController {
         
         try {
             
-            DAOPersistence objPerson = new DAOPersistence();            
-            iRepository.save(objPerson.validateObj(namePerson, status, local, expectedStart, startSurgery, endSurgery, expectedOutput));
+            DAOPersistence objDAOPersistence = new DAOPersistence();            
+            iRepository.save(objDAOPersistence.validateObj(namePerson, status, local, expectedStart, startSurgery, endSurgery, expectedOutput));
             return "Saved";
         } 
         catch (Exception e) {
@@ -47,15 +47,21 @@ public class PersonController {
     }
     
     @PutMapping(path = "/{idPerson}")
-    public @ResponseBody String updatePerson(@PathVariable int idPerson, @RequestParam String namePerson, @RequestParam String status){
+    public @ResponseBody String updatePerson(@PathVariable int idPerson, @RequestParam String namePerson, @RequestParam String status, @RequestParam String local, @RequestParam String expectedStart, @RequestParam String startSurgery, @RequestParam String endSurgery, @RequestParam String expectedOutput){
         
         try {
-            //Status objStatus = new Status();
+            
+            DAOPersistence objDAOPersistence = new DAOPersistence();
             Person objPerson = iRepository.findById(idPerson);
+            
 
-            //objStatus.setNameStatus(nameStatus);
             objPerson.setNamePerson(namePerson);
             objPerson.setStatus(status);
+            objPerson.setLocal(local);
+            objPerson.setExpectedStart(expectedStart);
+            objPerson.setStartSurgery(startSurgery);
+            objPerson.setEndSurgery(endSurgery);
+            objPerson.setExpectedOutput(expectedOutput);
 
             iRepository.save(objPerson);
             return "Updated";            
@@ -77,5 +83,10 @@ public class PersonController {
         
         return iRepository.findById(idPerson);
 //      
+    }
+    
+    @RequestMapping("/panelManager")
+    public String page(){
+        return "html/panelManager";
     }
 }

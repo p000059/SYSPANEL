@@ -12,24 +12,16 @@ public class DAOPersistence {
     @Autowired
     private IRepository iRepository;
     
-    private String namePerson;
-    private String status;
-    private String local;
-
+    
     private IValidator iValidator = new ValidatorException();
     
     private Person objPerson = new Person();
     
-    public DAOPersistence(){}
-    
-    public DAOPersistence(String namePerson, String status, String local){
-        this.namePerson = namePerson;
-        this.status = status;
-        this.local = local;
+    public void validatePerson(String namePerson, String status, String local, String expectedStart, String startSurgery, String endSurgery, String expectedOutput){
+        
         
     }
     
-    @ResponseBody
     public Person validateObj(String namePerson, String status, String local, String expectedStart, String startSurgery, String endSurgery, String expectedOutput){
         
         if(iValidator.validate(namePerson)){
